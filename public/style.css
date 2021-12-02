@@ -1,0 +1,21 @@
+
+
+*{
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+
+  }
+
+
+
+  a {
+      text-decoration: none;
+      padding:0;
+      margin:0;
+  }
+
+  .link-dark{
+      cursor: pointer;
+      color:black;
+  }
