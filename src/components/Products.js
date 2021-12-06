@@ -28,14 +28,14 @@ export default function Products() {
 
                 setProducts(products.data)
             } catch(err){
-                console.log(err)
+                // console.log(err)
             }        
        }
         fetchProducts()
         
     }, [])
     useEffect(() => {
-        console.log(products)
+        // console.log(products)
     }, [products])
     // console.log(products)
     return (

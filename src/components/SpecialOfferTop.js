@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import CloseIcon from '@mui/icons-material/Close';
-
+        
 
 const Background = styled.div`
     width:100%;
@@ -12,25 +12,18 @@ const Background = styled.div`
     justify-content: center;
     position:fixed;
     top:0;
-    z-index:10;
+    z-index:1000;
 `
 const Container = styled.div`
     width:90%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-   
 `
 
 
 const Header = styled.h1`
-    font-size: 14px;
-
-   
-`
-const DeliveryText = styled.h1`
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 14px;   
 `
 
 export default function SpecialOfferTop() {
@@ -38,7 +31,7 @@ export default function SpecialOfferTop() {
         <Background>
             <Container>
                 <Header>Special offer!  Up to 60% discount!</Header>
-                <DeliveryText>Free delivery!</DeliveryText>              
+                <Header>Free delivery!</Header>              
             </Container>          
         </Background>
     )
