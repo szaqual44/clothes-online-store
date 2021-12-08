@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { BsFacebook, BsTwitter, BsYoutube, BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { CustomLink } from "./CustomLink";
 
 const Background = styled.section`
     width:100%; 
@@ -59,7 +60,7 @@ export default function Footer() {
         <Background>
             <Container>
                 <Socials>
-                    <Icon><BsFacebook /></Icon>
+                    <CustomLink to='youtube.com'><Icon><BsFacebook /></Icon></CustomLink>
                     <Icon><BsTwitter /></Icon>
                     <Icon><BsYoutube /></Icon>
                     <Icon><BsInstagram /></Icon>

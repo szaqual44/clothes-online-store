@@ -4,5 +4,5 @@ import { API_URL } from './App';
 
 
 export const baseApi = axios.create({
-    baseURL: 'http://localhost:4000/api/'
+    baseURL: 'http://localhost:4000/api'
 });

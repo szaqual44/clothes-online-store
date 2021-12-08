@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 import styled from "styled-components"
+import { CustomLink, Link } from './CustomLink'
+// import CustomLink from './CustomLink'
 import SpecialOfferTop from './SpecialOfferTop'
 
 
@@ -49,20 +51,6 @@ const Right = styled.div`
       height:100%;
       display:flex;
 `
-const CustomLink = styled.a`  
-    height:100%;
-    color:#d1d1d1;
-    font-size: ${props=>props.brandText ? '28px' : '18px'};
-    font-weight: 700;
-    text-decoration:none;
-    padding:0 10px;
-    display:flex;  
-    align-items: center;
-    &:hover{
-        color:white;
-        background-color: rgb(25,25,25);
-    }
-`
 
 export default function Navbar() {
     return (
@@ -71,11 +59,9 @@ export default function Navbar() {
             <Background>
                 <Container>
                     <Left>
-                        <Link to='/' style={{textDecoration:"none"}}>
-                            <CustomLink brandText>
-                                    Shoppuuu
-                            </CustomLink>
-                        </Link>
+                        <CustomLink to='/' brandText >
+                                Shoppuuu
+                        </CustomLink>
                     </Left>
                     <Center>
                         <Menu>
@@ -83,19 +69,15 @@ export default function Navbar() {
                         </Menu>
                     </Center>
                     <Right>
-                        <CustomLink href="#">
-                            {/* <Link to={``}> */}
+                        <CustomLink to='/register'  >
+                                Sign Up
+                        </CustomLink>
+                        <CustomLink to='/login'  >
                                 Login
-                            {/* </Link> */}
                         </CustomLink>
-                        <CustomLink href="#">
-                            Sign Up
-                        </CustomLink>
-                        <Link to='/add-products' style={{textDecoration:"none"}}>
-                            <CustomLink href="#">                            
-                                Add Product                            
-                            </CustomLink>
-                        </Link>
+                        <CustomLink to='/add-products'  >
+                                Add Products
+                        </CustomLink>               
                     </Right>
                 </Container>
             </Background>

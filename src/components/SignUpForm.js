@@ -50,7 +50,7 @@ const Alert = styled.div`
     left:50%;
     transform:translateX(-50%);
     background-color: #d1e7dd;
-    background-color: lightgrey;
+    background-color: lightgrey ;
     border-color: #badbcc;  
     color: #0f5132;
     border-radius: 5px;
@@ -68,31 +68,33 @@ const Button = styled.button`
     cursor:grab;
 `
 
-export default function LoginForm() {
+export default function SignUpForm() {
     const [email,setEmail] = useState()
     const [password,setPassword] = useState()
+    const [passwordConfirm,setPasswordConfirm] = useState()
     const [response,setResponse] = useState()
     
     const handleSubmit =  (e)=>{
         e.preventDefault()        
-        const loginData = {
+        const newUser = {
             email:email,
             password:password,
+            passwordConfirm:passwordConfirm
         }
-        axios.post('http://localhost:4000/api/login', loginData)
+        axios.post('http://localhost:4000/api/register', newUser)
          .then(res=>setResponse(res.data))
          .catch(err=>console.log(err))
-        
+         clearForm()
     }
-
     const clearForm = () =>{
         setEmail('')    
         setPassword('')
+        setPasswordConfirm('')
     }
     return (
         <Background>
             <Container>
-                <Header>Login</Header>
+                <Header>Sign Up</Header>
                 <Form onSubmit={(e)=>handleSubmit(e)}>
                     <Label for="email">Email:</Label>
                     <Input type='text' name='email' id="email" value={email} onChange={e=>setEmail(e.target.value)} />
@@ -100,10 +102,10 @@ export default function LoginForm() {
                     <Label for="password">Password:</Label>
                     <Input type='password' name='password' id="password" value={password} onChange={e=>setPassword(e.target.value)} />
                     
+                    <Label for="passwordConfirm">Password confirmation:</Label>
+                    <Input type='password' name='passwordConfirm' id="passwordConfirm" value={passwordConfirm} onChange={e=>setPasswordConfirm(e.target.value)} />
                         
-                    {response!==undefined && response.email===undefined ?<Alert> {response}</Alert>:null}
-                    {response!==undefined && response.email!==undefined ?<Alert> {`${response.email} has beed logged in`}</Alert>:null}
-                    {console.log(response)}
+                    {response!==undefined ?<Alert>{response} </Alert>:null}
                     <Button type='submit'>Sign Up</Button>
                 </Form>
                   

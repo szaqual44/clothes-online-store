@@ -41,7 +41,7 @@ const Price = styled.span`
     font-size: 30px;
     text-transform: uppercase;
     color:grey;
-    margin-top: 4   0px;
+    margin-top: 40px;
 `
 const Description = styled.span`
     font-size: 24px;
@@ -59,12 +59,12 @@ const Button = styled.button`
 export default function ProductDetails() {
     const [product,setProduct] = useState()
     const location = useLocation();
-    const id=location.pathname.split('/')[3]    
+    const id=location.pathname.split('/')[2]    
     // console.log("Location: ",location.pathname)
     // console.log("ID: ",id)    
 
     useEffect(() => {
-            baseApi.get("products/" + id)
+            baseApi.get("/products/" + id)
             .then(res=>{
                 setProduct(res.data)
                 // console.log(res.data.name)

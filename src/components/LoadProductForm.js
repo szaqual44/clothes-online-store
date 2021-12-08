@@ -1,7 +1,6 @@
 import axios from 'axios'
 import {useState} from 'react'
 import styled from "styled-components"
-import { baseApi } from '../serverMethods'
 
 
 const Background = styled.section`
@@ -50,7 +49,7 @@ const Alert = styled.div`
     left:50%;
     transform:translateX(-50%);
     background-color: #d1e7dd;
-    background-color: lightgrey;
+    background-color: lightgrey ;
     border-color: #badbcc;  
     color: #0f5132;
     border-radius: 5px;
@@ -68,46 +67,49 @@ const Button = styled.button`
     cursor:grab;
 `
 
-export default function LoginForm() {
-    const [email,setEmail] = useState()
-    const [password,setPassword] = useState()
-    const [response,setResponse] = useState()
+
+export default function LoadProductForm() {
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
+    const [price, setPrice] = useState();
     
     const handleSubmit =  (e)=>{
         e.preventDefault()        
-        const loginData = {
-            email:email,
-            password:password,
+        const newProduct = {
+            name:name,
+            desc:description,
+            img:image,
+            price:price,
         }
-        axios.post('http://localhost:4000/api/login', loginData)
-         .then(res=>setResponse(res.data))
+        axios.post('http://localhost:4000/api/products/add', newProduct)
+         .then(data=>console.log(data))
          .catch(err=>console.log(err))
-        
     }
-
     const clearForm = () =>{
-        setEmail('')    
-        setPassword('')
+        setName('')
+        setDescription('')
+        setImage('')
+        setPrice(0)
     }
+    
     return (
         <Background>
-            <Container>
-                <Header>Login</Header>
-                <Form onSubmit={(e)=>handleSubmit(e)}>
-                    <Label for="email">Email:</Label>
-                    <Input type='text' name='email' id="email" value={email} onChange={e=>setEmail(e.target.value)} />
-                    
-                    <Label for="password">Password:</Label>
-                    <Input type='password' name='password' id="password" value={password} onChange={e=>setPassword(e.target.value)} />
-                    
-                        
-                    {response!==undefined && response.email===undefined ?<Alert> {response}</Alert>:null}
-                    {response!==undefined && response.email!==undefined ?<Alert> {`${response.email} has beed logged in`}</Alert>:null}
-                    {console.log(response)}
-                    <Button type='submit'>Sign Up</Button>
+            <Container> 
+                <Form onSubmit={e=>handleSubmit(e)}>
+                    <Header>Dodaj produkt do bazy danych:</Header>
+                    <Label>Name:</Label>
+                    <Input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
+                    <Label>Description:</Label>
+                    <Input type='text' value={description} onChange={(e)=>setDescription(e.target.value)} />    
+                    <Label>Price:</Label>
+                    <Input type='number'value={price} onChange={(e)=>setPrice(e.target.value)} />    
+                    <Label>Image:</Label>
+                    <Input type='text' value={image} onChange={(e)=>setImage(e.target.value)} />    
+                    <Button type='submit'> Dodaj </Button>   
                 </Form>
-                  
+                <Button red onClick={()=>clearForm()}> Wyczyść </Button>  
             </Container>
-        </Background>
+    </Background>
     )
 }

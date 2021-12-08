@@ -7,6 +7,8 @@ import {
 import HomePage from "./pages/HomePage";
 import LoadProducts from "./pages/LoadProducts";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 
 
 
@@ -21,7 +23,9 @@ function App() {
          
           <Route exact path="/" element={<HomePage/>} /> 
           <Route path="/add-products" element={<LoadProducts />} /> 
-          <Route path="/api/products/:id" element={<ProductDetailsPage />} /> 
+          <Route path="/products/:id" element={<ProductDetailsPage />} /> 
+          <Route path="/register" element={<SignUpPage />} /> 
+          <Route path="/login" element={<LoginPage />} /> 
     </Routes>
    </BrowserRouter>
   );

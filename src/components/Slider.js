@@ -4,7 +4,6 @@ import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { width } from "@mui/system";
 
 const Container = styled.div`
-   
     margin-top:85px;
     position: relative;
     display:flex;   

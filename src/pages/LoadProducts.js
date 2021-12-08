@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import styled  from 'styled-components'
+import LoadProductForm from '../components/LoadProductForm'
 import Navbar from '../components/Navbar'
 
 
@@ -76,23 +77,9 @@ export default function LoadProducts() {
     
     
     return (
-        <Container>
-            <Navbar/> 
-            <FormContainer> 
-                <Form onSubmit={e=>handleSubmit(e)}>
-                    <h1>Dodaj produkt do bazy danych:</h1>
-                    <Label>Name:</Label>
-                    <Input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
-                    <Label>Description:</Label>
-                    <Input type='text' value={description} onChange={(e)=>setDescription(e.target.value)} />    
-                    <Label>Price:</Label>
-                    <Input type='number'value={price} onChange={(e)=>setPrice(e.target.value)} />    
-                    <Label>Image:</Label>
-                    <Input type='text' value={image} onChange={(e)=>setImage(e.target.value)} />    
-                    <Button type='submit'> Dodaj </Button>   
-                </Form>
-                <Button red onClick={()=>clearForm()}> Wyczyść </Button>  
-            </FormContainer>
-        </Container>
+        <>
+            <Navbar/>
+            <LoadProductForm/>
+        </>
     )
 }

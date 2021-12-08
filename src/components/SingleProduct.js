@@ -36,7 +36,7 @@ export default function SingleProduct({ product}) {
     return (
         <Container>
             <Image src={product.img} />
-            <Link to={`/api/products/${product._id}`}>   
+            <Link to={`/products/${product._id}`}>   
             {/* <Link to={`/${product._id}`}>    */}
                 <WhiteFilter/>            
             </Link>
