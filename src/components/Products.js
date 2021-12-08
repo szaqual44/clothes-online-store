@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useState, useEffect } from 'react'
 import styled from "styled-components"
+import { backendURL } from '../serverMethods';
 import SingleProduct from './SingleProduct';
 
 
@@ -24,7 +25,7 @@ export default function Products() {
     useEffect(() => {
        async function fetchProducts(){
             try {
-                let products = await axios.get('http://localhost:4000/api/products')
+                let products = await backendURL.get('/products')
 
                 setProducts(products.data)
             } catch(err){

@@ -1,7 +1,7 @@
-import axios from 'axios'
+
 import {useState} from 'react'
 import styled from "styled-components"
-import { baseApi } from '../serverMethods'
+import { backendURL, baseApi } from '../serverMethods'
 
 
 const Background = styled.section`
@@ -79,7 +79,7 @@ export default function LoginForm() {
             email:email,
             password:password,
         }
-        axios.post('http://localhost:4000/api/login', loginData)
+        backendURL.post('/login', loginData)
          .then(res=>setResponse(res.data))
          .catch(err=>console.log(err))
         
@@ -99,8 +99,7 @@ export default function LoginForm() {
                     
                     <Label for="password">Password:</Label>
                     <Input type='password' name='password' id="password" value={password} onChange={e=>setPassword(e.target.value)} />
-                    
-                        
+                          
                     {response!==undefined && response.email===undefined ?<Alert> {response}</Alert>:null}
                     {response!==undefined && response.email!==undefined ?<Alert> {`${response.email} has beed logged in`}</Alert>:null}
                     {console.log(response)}

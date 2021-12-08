@@ -1,10 +1,9 @@
 import React from 'react'
-
 import styled from "styled-components"
-import { CustomLink, Link } from './CustomLink'
-// import CustomLink from './CustomLink'
-import SpecialOfferTop from './SpecialOfferTop'
+import { CustomLink } from './CustomLink'
 
+import SpecialOfferTop from './SpecialOfferTop'
+import { BsFillCartFill }  from "react-icons/bs";
 
 const Background = styled.nav`
     width:100%;
@@ -77,6 +76,9 @@ export default function Navbar() {
                         </CustomLink>
                         <CustomLink to='/add-products'  >
                                 Add Products
+                        </CustomLink>               
+                        <CustomLink to='/cart'  >
+                            <BsFillCartFill/>
                         </CustomLink>               
                     </Right>
                 </Container>

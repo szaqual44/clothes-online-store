@@ -16,14 +16,28 @@ const Container = styled.div`
     flex-direction:column;
     align-items: center;
 `
+
 const Socials = styled.div`
      margin: 30px 0;
      font-size: 40px;
      display: flex;
      justify-content: center;
+
 `
 const Icon = styled.div`
    margin: 0 20px;
+   padding:10px 5px;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+`
+const ExternalLink = styled.a` 
+    text-decoration:none;
+    color:inherit;
+    &:hover{
+        border-radius: 5px; 
+        background: lightgray;
+    }
 `
 const Divider = styled.div`
    width: 90%;
@@ -59,13 +73,32 @@ export default function Footer() {
     return (
         <Background>
             <Container>
+                {/* SOCIAL LINKS */}
                 <Socials>
-                    <CustomLink to='youtube.com'><Icon><BsFacebook /></Icon></CustomLink>
-                    <Icon><BsTwitter /></Icon>
-                    <Icon><BsYoutube /></Icon>
-                    <Icon><BsInstagram /></Icon>
+                    <ExternalLink href='https://www.facebook.com/' target='_blank'>
+                        <Icon>
+                            <BsFacebook />
+                        </Icon>
+                    </ExternalLink>
+                    <ExternalLink href='https://www.twitter.com/' target='_blank'>
+                        <Icon>
+                            <BsTwitter />
+                        </Icon>
+                    </ExternalLink>
+                    <ExternalLink href='https://www.youtube.com/' target='_blank'>
+                        <Icon>
+                            <BsYoutube />
+                        </Icon>
+                    </ExternalLink>
+                    <ExternalLink href='https://www.instagram.com/' target='_blank'>
+                        <Icon>
+                            <BsInstagram />
+                        </Icon>
+                    </ExternalLink>          
                 </Socials>
+
                 <Divider/>
+
                 <MenuContainer>
                     <MenuList>                   
                         <MenuLink>

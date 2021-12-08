@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useLocation } from 'react-router'
 import styled from "styled-components"
-import { baseApi } from '../serverMethods';
+import { backendURL } from '../serverMethods';
+import QuantityCounter from './QuantityCounter';
 
 const Background = styled.section`
     width:100%; 
@@ -58,13 +59,12 @@ const Button = styled.button`
 
 export default function ProductDetails() {
     const [product,setProduct] = useState()
+    const [quantity,setQuantity] = useState(1)
     const location = useLocation();
     const id=location.pathname.split('/')[2]    
-    // console.log("Location: ",location.pathname)
-    // console.log("ID: ",id)    
 
     useEffect(() => {
-            baseApi.get("/products/" + id)
+            backendURL.get("/products/" + id)
             .then(res=>{
                 setProduct(res.data)
                 // console.log(res.data.name)
@@ -72,8 +72,11 @@ export default function ProductDetails() {
             .catch(err=>console.log(err))     
     }, [id]);
 
-    return (
+    function addToCart(id){
         
+    }
+
+    return (        
             <Background>
                 {product!==undefined &&
                 <Container>
@@ -86,7 +89,11 @@ export default function ProductDetails() {
                             <Price>$ {product.price}</Price>
                         </Header>
                         <Description>{product.desc}</Description>
-                        <Button>Add</Button>
+
+                        <QuantityCounter value={quantity} setValue={setQuantity}/>
+
+
+                        <Button onClick={e=>addToCart(product._id)}>Add</Button>
                     </DescriptionContainer>
                 </Container>
                 }

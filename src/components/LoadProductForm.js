@@ -1,6 +1,7 @@
-import axios from 'axios'
+
 import {useState} from 'react'
 import styled from "styled-components"
+import { backendURL } from '../serverMethods'
 
 
 const Background = styled.section`
@@ -82,7 +83,7 @@ export default function LoadProductForm() {
             img:image,
             price:price,
         }
-        axios.post('http://localhost:4000/api/products/add', newProduct)
+        backendURL.post('/products/add', newProduct)
          .then(data=>console.log(data))
          .catch(err=>console.log(err))
     }

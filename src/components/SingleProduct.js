@@ -8,13 +8,10 @@ const Container = styled.div`
     height: 400px;
     margin:10px;
     position: relative;
-
-    
 `
 const Image = styled.img` 
     width:100%;
     height: 100%;
-    
 `
 const WhiteFilter = styled.div` 
     position:absolute;
@@ -29,7 +26,6 @@ const WhiteFilter = styled.div`
     &:hover{
         opacity: 0;
     }
-
 `
 
 export default function SingleProduct({ product}) {
