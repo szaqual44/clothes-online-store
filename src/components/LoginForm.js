@@ -1,8 +1,10 @@
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from "styled-components"
-import { backendURL, baseApi } from '../serverMethods'
-
+import { login } from '../redux/loginAsync'
+import { backendURL } from '../serverMethods'
 
 const Background = styled.section`
     margin:40px 0;
@@ -12,7 +14,6 @@ const Background = styled.section`
     background-color: white;  
     display: flex;
     justify-content: center;
-
 `
 const Container = styled.div`
     width:440px; 
@@ -67,28 +68,24 @@ const Button = styled.button`
     padding:20px;
     cursor:grab;
 `
-
 export default function LoginForm() {
-    const [email,setEmail] = useState()
-    const [password,setPassword] = useState()
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
     const [response,setResponse] = useState()
-    
-    const handleSubmit =  (e)=>{
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state=>state.user.currentUser)
+    const error = useSelector(state=>state.user.error)
+    const isFetching = useSelector(state=>state.user.isFetching)
+    useEffect(() => {
+        setEmail('')
+        setPassword('')
+    }, [])
+
+    const handleSubmit = (e)=>{
         e.preventDefault()        
-        const loginData = {
-            email:email,
-            password:password,
-        }
-        backendURL.post('/login', loginData)
-         .then(res=>setResponse(res.data))
-         .catch(err=>console.log(err))
-        
+        login(dispatch,{email,password})
     }
 
-    const clearForm = () =>{
-        setEmail('')    
-        setPassword('')
-    }
     return (
         <Background>
             <Container>
@@ -100,9 +97,9 @@ export default function LoginForm() {
                     <Label for="password">Password:</Label>
                     <Input type='password' name='password' id="password" value={password} onChange={e=>setPassword(e.target.value)} />
                           
-                    {response!==undefined && response.email===undefined ?<Alert> {response}</Alert>:null}
-                    {response!==undefined && response.email!==undefined ?<Alert> {`${response.email} has beed logged in`}</Alert>:null}
-                    {console.log(response)}
+                    {error ?<Alert> {error}</Alert>:null}
+                    {currentUser!==null && currentUser.email!==undefined ?<Alert> {`${currentUser.email} has beed logged in`}</Alert>:null}
+               
                     <Button type='submit'>Sign Up</Button>
                 </Form>
                   

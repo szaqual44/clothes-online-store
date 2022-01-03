@@ -1,12 +1,10 @@
-
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-
 
 const Container = styled.div`
     width:300px; 
     height: 400px;
-    margin:10px;
+    margin:10px 0;
     position: relative;
 `
 const Image = styled.img` 

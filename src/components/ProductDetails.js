@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useLocation } from 'react-router'
+import { useDispatch } from 'react-redux';
 import styled from "styled-components"
+import { addProduct } from '../redux/cartRedux';
 import { backendURL } from '../serverMethods';
 import QuantityCounter from './QuantityCounter';
 
@@ -9,17 +11,14 @@ const Background = styled.section`
     background-color: white;  
     display: flex;
     justify-content: center;
-    margin:40px 0;
-  
+    margin:40px 0;  
 `
 const Container = styled.div`
     width:1440px; 
     display:flex;
-
 `
 const Image = styled.img`
-    max-width: 500px;
-    
+    max-width: 500px;    
 `
 const DescriptionContainer = styled.div`
     margin-left:40px;
@@ -62,37 +61,32 @@ export default function ProductDetails() {
     const [quantity,setQuantity] = useState(1)
     const location = useLocation();
     const id=location.pathname.split('/')[2]    
-
+    const dispatch = useDispatch()
     useEffect(() => {
             backendURL.get("/products/" + id)
             .then(res=>{
                 setProduct(res.data)
-                // console.log(res.data.name)
             })
             .catch(err=>console.log(err))     
     }, [id]);
 
-    function addToCart(id){
-        
+    function addToCart(id){  
+        dispatch(addProduct({...product, quantity}))
+          
     }
 
     return (        
             <Background>
                 {product!==undefined &&
                 <Container>
-                    <Image src={product.img}>
-                        {/* {product!==undefined ? <h1>{product.name} </h1>: null} */}
-                    </Image>
+                    <Image src={product.img}></Image>
                     <DescriptionContainer>
                         <Header>
                             <Name>{product.name}</Name>
                             <Price>$ {product.price}</Price>
                         </Header>
                         <Description>{product.desc}</Description>
-
                         <QuantityCounter value={quantity} setValue={setQuantity}/>
-
-
                         <Button onClick={e=>addToCart(product._id)}>Add</Button>
                     </DescriptionContainer>
                 </Container>

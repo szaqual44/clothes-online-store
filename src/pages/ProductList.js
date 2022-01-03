@@ -2,15 +2,16 @@ import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
-import SignUpForm from "../components/SignUpForm";
+import Categories from "../components/Categories";
 
-export default function RegisterPage() {
+export default function ProductList() {
     return (
         <>
             <Navbar/> 
-            <SignUpForm/>
+            <Slider/>
+            <Categories/>
+            <Products/>
             <Footer/>
-           
         </>
     )
 }

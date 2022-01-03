@@ -1,7 +1,9 @@
-import axios from 'axios'
+
 import {useState} from 'react'
 import styled from "styled-components"
 import { backendURL, baseApi } from '../serverMethods'
+import { login } from '../redux/loginAsync'
+import { useDispatch } from 'react-redux'
 
 
 const Background = styled.section`
@@ -73,7 +75,7 @@ export default function SignUpForm() {
     const [password,setPassword] = useState()
     const [passwordConfirm,setPasswordConfirm] = useState()
     const [response,setResponse] = useState()
-    
+    const dispatch = useDispatch()
     const handleSubmit =  (e)=>{
         e.preventDefault()        
         const newUser = {
@@ -81,10 +83,16 @@ export default function SignUpForm() {
             password:password,
             passwordConfirm:passwordConfirm
         }
-        backendURL.post('/register', newUser)
-         .then(res=>setResponse(res.data))
-         .catch(err=>console.log(err))
-         clearForm()
+        try{
+            backendURL.post('/register', newUser)
+            .then(res=>setResponse(res.data))
+            .catch(err=>console.log(err))
+            login(dispatch,{email,password})
+            clearForm()
+        } catch (err){
+
+        }
+        
     }
     const clearForm = () =>{
         setEmail('')    

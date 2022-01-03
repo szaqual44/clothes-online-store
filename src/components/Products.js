@@ -19,14 +19,14 @@ const Container = styled.div`
     justify-content: space-between;  
 `
 
-export default function Products() {
+export default function Products({category}) {
     const [products, setProducts] = useState([]);
+    
     
     useEffect(() => {
        async function fetchProducts(){
             try {
-                let products = await backendURL.get('/products')
-
+                let products = await backendURL.get( category?`/products?category=${category}` :'/products')
                 setProducts(products.data)
             } catch(err){
                 // console.log(err)
@@ -34,11 +34,8 @@ export default function Products() {
        }
         fetchProducts()
         
-    }, [])
-    useEffect(() => {
-        // console.log(products)
-    }, [products])
-    // console.log(products)
+    }, [category])
+
     return (
         <Background>
             <Container>

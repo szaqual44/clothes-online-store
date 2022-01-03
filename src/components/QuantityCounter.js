@@ -34,9 +34,7 @@ const Icon = styled.div`
 
 
 export default function QuantityCounter({value, setValue}) {
-    useEffect(() => {
-       
-    }, [])
+
     
     function decrease(){
         if (value>1){

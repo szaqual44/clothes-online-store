@@ -10,7 +10,6 @@ export default function ProductDetailsPage() {
             <Navbar/> 
             <Slider/>
             <ProductDetails  key={new Date()}/>
-
             <Footer/>
         </>
     )
