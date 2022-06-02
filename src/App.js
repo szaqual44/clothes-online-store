@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import UpdateProducts from "./pages/UpdateProducts";
 import { useSelector } from "react-redux";
+import ProductList from "./pages/ProductList";
 
 
 function App() {

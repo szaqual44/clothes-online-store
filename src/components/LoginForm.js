@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import styled from "styled-components"
-import { login } from '../redux/loginAsync'
+import { login } from '../redux/apiCalls'
 import { backendURL } from '../serverMethods'
 
 const Background = styled.section`

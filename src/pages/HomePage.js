@@ -15,7 +15,9 @@ export default function HomePage() {
         <>
             <Navbar /> 
             <Slider/>
+          
             <Categories category={category} setCategory={setCategory}/>
+            
             <Products category={category}/>
             <Footer/>
         </>

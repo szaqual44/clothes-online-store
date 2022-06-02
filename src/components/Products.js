@@ -26,7 +26,8 @@ export default function Products({category}) {
     useEffect(() => {
        async function fetchProducts(){
             try {
-                let products = await backendURL.get( category?`/products?category=${category}` :'/products')
+                let products = await backendURL.get('/products')
+                // let products = await backendURL.get( category ?`/products?category=${category}` :'/products')
                 setProducts(products.data)
             } catch(err){
                 // console.log(err)

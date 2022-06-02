@@ -1,8 +1,8 @@
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import styled from "styled-components"
 import { backendURL, baseApi } from '../serverMethods'
-import { login } from '../redux/loginAsync'
+import { login } from '../redux/apiCalls'
 import { useDispatch } from 'react-redux'
 
 
@@ -76,6 +76,10 @@ export default function SignUpForm() {
     const [passwordConfirm,setPasswordConfirm] = useState()
     const [response,setResponse] = useState()
     const dispatch = useDispatch()
+    useEffect(() => {
+        clearForm()
+    })
+   
     const handleSubmit =  (e)=>{
         e.preventDefault()        
         const newUser = {

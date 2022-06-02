@@ -9,6 +9,7 @@ export default function ProductList() {
         <>
             <Navbar/> 
             <Slider/>
+       
             <Categories/>
             <Products/>
             <Footer/>

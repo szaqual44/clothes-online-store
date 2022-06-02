@@ -1,6 +1,11 @@
 import { configureStore , combineReducers} from "@reduxjs/toolkit"
+import { createStore, applyMiddleware } from 'redux'; 
+import thunk from 'redux-thunk'; 
+
 import cartReducer from './cartRedux'
 import userReducer from './userRedux'
+
+
 import {
     persistStore,
     persistReducer,
@@ -30,8 +35,9 @@ export const store = configureStore({
       getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
+        },        
       }),
+      
   });
   
   export const persistor = persistStore(store);
